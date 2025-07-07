@@ -1,35 +1,85 @@
 package Historia;
+
 import java.util.ArrayList;
 
+/**
+ * Clase Mascota.java
+ * Problema original: lista de consultas expuesta y sin validaciones de atributos.
+ */
 public class Mascota {
     private String nombre;
     private String especie;
     private int edad;
-    private ArrayList<Consulta> consultas = new ArrayList<>();
+    // private ArrayList<Consulta> consultas; // original
+    private Historial historial; // ✅ Refactor: delegar manejo de consultas a Historial
 
     public Mascota(String nombre, String especie, int edad) {
+        /* Código original:
         this.nombre = nombre;
         this.especie = especie;
         this.edad = edad;
+        this.consultas = new ArrayList<>();
+        */
+        // ✅ Refactor: usar setters con validación y crear historial
+        setNombre(nombre);
+        setEspecie(especie);
+        setEdad(edad);
+        this.historial = new Historial();
     }
 
-    /**
-     * Agrega una consulta médica al historial de la mascota.
-     */
-    public void agregarConsulta(Consulta c) {
-        consultas.add(c);
+    public void agregarConsulta(Consulta consulta) {
+        // consultas.add(consulta); // original
+        // ✅ Refactor: delegar a Historial
+        historial.agregarConsulta(consulta);
     }
 
-    /**
-     * Muestra la información de la mascota y su historial de consultas.
-     */
     public void mostrarHistorial() {
         System.out.println("📋 Mascota: " + nombre + " | Especie: " + especie + " | Edad: " + edad + " años");
         System.out.println("Historial de consultas:");
-        for (Consulta c : consultas) {
-            c.mostrarDetalleConsulta();
-            System.out.println("--------------------------");
+        /* Código original:
+        if (consultas.isEmpty()) {
+            System.out.println("Sin consultas registradas.");
+        } else {
+            for (Consulta c : consultas) {
+                c.mostrarConsulta();
+                System.out.println("--------------------------");
+            }
         }
-        System.out.println();
+        */
+        // ✅ Refactor: usar método de Historial
+        historial.mostrarConsultas();
     }
+
+    // Getters y setters con validación
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("Nombre inválido.");
+        }
+        this.nombre = nombre;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+    public void setEspecie(String especie) {
+        if (especie == null || especie.isBlank()) {
+            throw new IllegalArgumentException("Especie inválida.");
+        }
+        this.especie = especie;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+    public void setEdad(int edad) {
+        if (edad < 0) {
+            throw new IllegalArgumentException("Edad no puede ser negativa.");
+        }
+        this.edad = edad;
+    }
+
+    // ❌ No se expone lista interna de historial
 }

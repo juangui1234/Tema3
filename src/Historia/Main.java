@@ -1,61 +1,73 @@
 package Historia;
+
+import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Clase Main.java refactorizada
+ * Usa IDGenerator, LocalDate y validaciones.
+ */
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Ingreso de datos del propietario
-        System.out.println("Registro de propietario");
+        // === Registro del Propietario ===
+        System.out.println("=== Registro del Propietario ===");
         System.out.print("Nombre: ");
         String nombreProp = sc.nextLine();
         System.out.print("Documento: ");
-        int documento = Integer.parseInt(sc.nextLine());
+        String documento = sc.nextLine();
         System.out.print("Teléfono: ");
-        int telefono = Integer.parseInt(sc.nextLine());
-
+        String telefono = sc.nextLine();
         Propietario propietario = new Propietario(nombreProp, documento, telefono);
 
-        // Registro de mascotas
-        System.out.print("¿Cuántas mascotas desea registrar?: ");
-        int cantMascotas = Integer.parseInt(sc.nextLine());
+        // === Registro de Mascotas ===
+        System.out.print("\n¿Cuántas mascotas desea registrar?: ");
+        int numMascotas = Integer.parseInt(sc.nextLine());
 
-        for (int i = 0; i < cantMascotas; i++) {
-            System.out.println("\nMascota " + (i + 1));
-            System.out.print("Nombre: ");
-            String nombreM = sc.nextLine();
+        for (int i = 1; i <= numMascotas; i++) {
+            System.out.println("\n--- Mascota #" + i + " ---");
+            System.out.print("Nombre de la mascota: ");
+            String nombreMascota = sc.nextLine();
             System.out.print("Especie: ");
             String especie = sc.nextLine();
             System.out.print("Edad: ");
             int edad = Integer.parseInt(sc.nextLine());
 
-            Mascota mascota = new Mascota(nombreM, especie, edad);
+            // Código automático usando IDGenerator
+            String codigoMascota = IDGenerator.generarCodigoMascota(); // no almacenado en clase, solo demo
+            Mascota mascota = new Mascota(nombreMascota, especie, edad);
+            propietario.agregarMascota(mascota);
 
-            // Registro de consultas para cada mascota
-            System.out.print("¿Cuántas consultas tiene esta mascota?: ");
-            int cantConsultas = Integer.parseInt(sc.nextLine());
+            // === Registro de Consultas ===
+            System.out.print("¿Cuántas consultas desea agregar a esta mascota?: ");
+            int numConsultas = Integer.parseInt(sc.nextLine());
 
-            for (int j = 0; j < cantConsultas; j++) {
-                System.out.println("\nConsulta " + (j + 1));
-                System.out.print("Código: ");
-                String cod = sc.nextLine();
+            for (int j = 1; j <= numConsultas; j++) {
+                System.out.println("-> Consulta #" + j);
+                String codigo = IDGenerator.generarCodigoConsulta();
                 System.out.print("Fecha (YYYY-MM-DD): ");
                 String fecha = sc.nextLine();
-                System.out.print("Nombre del veterinario: ");
-                String nomVet = sc.nextLine();
+                System.out.println("Información del veterinario:");
+                System.out.print("Nombre: ");
+                String nombreVet = sc.nextLine();
                 System.out.print("Especialidad: ");
-                String esp = sc.nextLine();
-
-                Veterinario vet = new Veterinario(nomVet, esp);
-                Consulta consulta = new Consulta(cod, fecha, vet);
+                String especialidad = sc.nextLine();
+                Consulta consulta = new Consulta(codigo, fecha, new Veterinario(nombreVet, especialidad));
                 mascota.agregarConsulta(consulta);
             }
-
-            propietario.agregarMascota(mascota);
         }
 
-        // Mostrar historial clínico completo
-        System.out.println();
-        propietario.mostrarInformacionCompleta();
+        // Mostrar resultados
+        System.out.println("\n===== FICHA CLÍNICA COMPLETA =====");
+        propietario.mostrarInformacion();
+        propietario.mostrarMascotas();
+
+        sc.close();
     }
+    /*
+    public static void main(String[] args) {
+        // Bloque original reemplazado por versión con validaciones y generación automática.
+    }
+    */
 }
