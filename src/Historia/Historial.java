@@ -3,10 +3,7 @@ package Historia;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Clase Historial.java
- * Separación de responsabilidad: manejo de lista de consultas.
- */
+
 public class Historial {
     private List<Consulta> consultas;
 

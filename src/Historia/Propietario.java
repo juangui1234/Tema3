@@ -1,13 +1,9 @@
 package Historia;
 
-import java.util.Collections;
+
 import java.util.List;
 import java.util.ArrayList;
 
-/**
- * Clase Propietario.java
- * Problema original: lista de mascotas modificable directamente, setters sin validación.
- */
 public class Propietario {
     private String nombre;
     private String documento;

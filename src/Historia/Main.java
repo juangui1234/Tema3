@@ -1,18 +1,13 @@
 package Historia;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
-/**
- * Clase Main.java refactorizada
- * Usa IDGenerator, LocalDate y validaciones.
- */
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         // === Registro del Propietario ===
-        System.out.println("=== Registro del Propietario ===");
+        System.out.println("=== Nombre del Propietario ===");
         System.out.print("Nombre: ");
         String nombreProp = sc.nextLine();
         System.out.print("Documento: ");
@@ -35,7 +30,7 @@ public class Main {
             int edad = Integer.parseInt(sc.nextLine());
 
             // Código automático usando IDGenerator
-            String codigoMascota = IDGenerator.generarCodigoMascota(); // no almacenado en clase, solo demo
+            String codigoMascota = IDGenerator.generarCodigoMascota(); // no almacenado en clase
             Mascota mascota = new Mascota(nombreMascota, especie, edad);
             propietario.agregarMascota(mascota);
 
@@ -65,9 +60,4 @@ public class Main {
 
         sc.close();
     }
-    /*
-    public static void main(String[] args) {
-        // Bloque original reemplazado por versión con validaciones y generación automática.
-    }
-    */
-}
+   }

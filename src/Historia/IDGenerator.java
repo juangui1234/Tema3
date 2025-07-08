@@ -1,9 +1,5 @@
 package Historia;
 
-/**
- * Clase IDGenerator.java
- * Genera códigos únicos para consultas y mascotas.
- */
 public class IDGenerator {
     private static int contadorConsulta = 0;
     private static int contadorMascota = 0;

@@ -1,11 +1,6 @@
 package Historia;
+//import java.util.ArrayList;
 
-import java.util.ArrayList;
-
-/**
- * Clase Mascota.java
- * Problema original: lista de consultas expuesta y sin validaciones de atributos.
- */
 public class Mascota {
     private String nombre;
     private String especie;
@@ -46,7 +41,7 @@ public class Mascota {
             }
         }
         */
-        // ✅ Refactor: usar método de Historial
+        // ✅ Refactor: usar metodo de Historial
         historial.mostrarConsultas();
     }
 
@@ -80,6 +75,4 @@ public class Mascota {
         }
         this.edad = edad;
     }
-
-    // ❌ No se expone lista interna de historial
-}
+   }

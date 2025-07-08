@@ -3,10 +3,6 @@ package Historia;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-/**
- * Clase Consulta.java
- * Problema original: fecha en String sin validación.
- */
 public class Consulta {
     private String codigo;
     // private String fecha; // original

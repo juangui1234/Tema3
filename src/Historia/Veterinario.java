@@ -1,9 +1,5 @@
 package Historia;
 
-/**
- * Clase Veterinario.java
- * Problema original: sin validaciones de campos.
- */
 public class Veterinario {
     private String nombre;
     private String especialidad;
@@ -21,6 +17,7 @@ public class Veterinario {
     public void mostrarPerfil() {
         System.out.println("Veterinario: " + nombre + " | Especialidad: " + especialidad);
     }
+
 
     public String getNombre() {
         return nombre;
